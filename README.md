@@ -19,5 +19,5 @@ Sample web chat room
 
 * AngularJS
 * ASP.Net WebApi
-* MSSQL/EF Code first
+* MSSQL\EF Code first
 * RabbitMQ
