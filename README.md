@@ -15,6 +15,10 @@ Sample web chat room
 * Picture
 * External link
 
+### Other
+
+* View chat history
+
 ### Tech stack:
 
 * AngularJS
