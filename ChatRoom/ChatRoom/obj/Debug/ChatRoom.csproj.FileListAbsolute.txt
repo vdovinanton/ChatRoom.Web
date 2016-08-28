@@ -26,3 +26,15 @@ D:\_github\ChatRoom.Web\ChatRoom\ChatRoom\bin\System.Web.Http.WebHost.xml
 D:\_github\ChatRoom.Web\ChatRoom\ChatRoom\obj\Debug\ChatRoom.csprojResolveAssemblyReference.cache
 D:\_github\ChatRoom.Web\ChatRoom\ChatRoom\obj\Debug\ChatRoom.dll
 D:\_github\ChatRoom.Web\ChatRoom\ChatRoom\obj\Debug\ChatRoom.pdb
+D:\_github\ChatRoom.Web\ChatRoom\ChatRoom\bin\Microsoft.AspNet.SignalR.Core.dll
+D:\_github\ChatRoom.Web\ChatRoom\ChatRoom\bin\Microsoft.AspNet.SignalR.SystemWeb.dll
+D:\_github\ChatRoom.Web\ChatRoom\ChatRoom\bin\Microsoft.Owin.dll
+D:\_github\ChatRoom.Web\ChatRoom\ChatRoom\bin\Microsoft.Owin.Host.SystemWeb.dll
+D:\_github\ChatRoom.Web\ChatRoom\ChatRoom\bin\Microsoft.Owin.Security.dll
+D:\_github\ChatRoom.Web\ChatRoom\ChatRoom\bin\Microsoft.Web.Infrastructure.dll
+D:\_github\ChatRoom.Web\ChatRoom\ChatRoom\bin\Owin.dll
+D:\_github\ChatRoom.Web\ChatRoom\ChatRoom\bin\Microsoft.AspNet.SignalR.Core.xml
+D:\_github\ChatRoom.Web\ChatRoom\ChatRoom\bin\Microsoft.AspNet.SignalR.SystemWeb.xml
+D:\_github\ChatRoom.Web\ChatRoom\ChatRoom\bin\Microsoft.Owin.xml
+D:\_github\ChatRoom.Web\ChatRoom\ChatRoom\bin\Microsoft.Owin.Host.SystemWeb.xml
+D:\_github\ChatRoom.Web\ChatRoom\ChatRoom\bin\Microsoft.Owin.Security.xml

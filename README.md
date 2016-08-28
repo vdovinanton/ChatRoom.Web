@@ -2,7 +2,7 @@
 
 Sample web chat room
 
-## Featurs
+## Features
 
 ### Screens:
 
