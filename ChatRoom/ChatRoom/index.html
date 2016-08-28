@@ -5,20 +5,37 @@
 	    <meta charset="utf-8" />
     </head>
     <body ng-app="chatApp">
-        Hello
+        
+        <div class="jumbotron text-center">
+            <h1>Chat room</h1>
+            <p>Display name</p>
+            <!--<img alt="{{user.name}}" class="img-circle" ng-src='{{aData.twitter.profileImageURL}}' />-->
+        </div>
 
-        <div ng-view></div>
+        <div class="col-md-3">
+        
+        </div>
 
+        <div class="col-md-6">
+            <div ng-view></div>
+        </div>
+
+        <div class="col-md-3">
+            
+        </div>
+
+
+        <!-- INCLUDES -->
         <script src="Scripts/jquery-3.1.0.js"></script>
         <script src="Scripts/angular.min.js"></script>
         <script src="Scripts/angular-route.min.js"></script>
         
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
-    <script src="app/app.js"></script>
+        <script src="app/app.js"></script>
         <script src="app/app.config.js"></script>
+        <script src="app/services/dataFactory.js"></script>
         <script src="app/home/homeController.js"></script>
     </body>
 </html>
