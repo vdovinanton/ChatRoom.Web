@@ -113,6 +113,7 @@
     <Content Include="app\app.js" />
     <Content Include="app\home\home.html" />
     <Content Include="app\home\homeController.js" />
+    <Content Include="app\services\chatHub.js" />
     <Content Include="app\services\dataFactory.js" />
     <Content Include="Global.asax" />
     <Content Include="index.html" />
