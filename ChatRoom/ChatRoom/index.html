@@ -1,46 +1,56 @@
 ﻿<!DOCTYPE html>
 <html>
-    <head>
-        <title>Chat room</title>
-        <meta charset="utf-8"/>
-        <link rel="stylesheet" type="text/css" href="app/home/home.css">
-    </head>
-    <body ng-app="chatApp">
-        
-        <div class="jumbotron text-center">
-            <h1>Chat room</h1>
-            <p>Display name</p>
-            <!--<img alt="{{user.name}}" class="img-circle" ng-src='{{aData.twitter.profileImageURL}}' />-->
+<head>
+    <title>Chat room</title>
+    <meta charset="utf-8"/>
+    <link rel="stylesheet" type="text/css" href="app/home/home.css">
+</head>
+<body ng-app="chatApp">
+
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">
+                <!--<img alt="Brand" src="https://cdn0.iconfinder.com/data/icons/kameleon-free-pack-rounded/110/Chat-2-128.png" width="50" >-->Chat room
+            </a>
         </div>
+    </div>
+</nav>
+<!-- <div class="jumbotron text-center">
+    <h1>Chat room</h1>
+    <p>Display name</p>
+    $1$<img alt="{{user.name}}" class="img-circle" ng-src='{{aData.twitter.profileImageURL}}'/>#1#
+</div>-->
 
-        <div class="col-md-3">
-        
-        </div>
+<div class="col-md-2">
 
-        <div class="col-md-6">
-            <div ng-view></div>
-        </div>
+</div>
 
-        <div class="col-md-3">
-            
-        </div>
+<div class="col-md-8">
+    <div ng-view></div>
+</div>
+
+<div class="col-md-2">
+
+</div>
 
 
-        <!-- INCLUDES -->
-        <script src="Scripts/jquery-3.1.0.js"></script>
-        <script src="Scripts/jquery.signalR-2.2.1.js"></script>
-        <script src="signalr/hubs"></script>
-        <script src="Scripts/angular.min.js"></script>
-        <script src="Scripts/angular-route.min.js"></script>
-        <script src="Scripts/angular-file-upload.min.js"></script>
+<!-- INCLUDES -->
+<script src="Scripts/jquery-3.1.0.js"></script>
+<script src="Scripts/jquery.signalR-2.2.1.js"></script>
+<script src="signalr/hubs"></script>
+<script src="Scripts/angular.min.js"></script>
+<script src="Scripts/angular-route.min.js"></script>
+<script src="Scripts/angular-file-upload.min.js"></script>
+<script src="Scripts/angular-sanitize.min.js"></script>
 
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
-        <script src="app/app.js"></script>
-        <script src="app/app.config.js"></script>
-        <script src="app/services/dataFactory.js"></script>
-    <script src="app/home/homeController.js"></script>
-        <script src="app/services/chatHub.js"></script>
-    </body>
+<script src="app/app.js"></script>
+<script src="app/app.config.js"></script>
+<script src="app/services/dataFactory.js"></script>
+<script src="app/home/homeController.js"></script>
+<script src="app/services/chatHub.js"></script>
+</body>
 </html>

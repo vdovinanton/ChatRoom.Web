@@ -1,41 +1,91 @@
 ﻿<div>
-    <div class="col-md-3" >
-        
+    <div class="col-md-2">
+
     </div>
 
-    <div class="col-md-6 jumbotron">
+    <div class="col-md-6">
         <div>
             Name: <input type="text" ng-model="name"/><br/>
-            Message: <input type="text" ng-model="message"/><br/>
-            <input type="button" value="Send" ng-click="newMessage()"/>
-        </div>
-        <div>
-            <ul>
-                <li ng-repeat="chat in messages">
-                    <span ng-bind="chat"></span>
-                </li>
-            </ul>
-        </div>
-
         <div class="panel panel-primary">
             <div class="panel-heading">
                 <span class="glyphicon glyphicon-comment"></span> Chat
             </div>
             <div class="panel-body">
-                <ul class="chat">
+                <ul class="chat" ng-repeat="chat in messages">
+                    <li ng-class="chat.senderName === name ? 'right clearfix' : 'left clearfix'">
+                        <span ng-class="chat.senderName === name ? 'chat-img pull-right' : 'chat-img pull-left'">
+                            <img src="http://placehold.it/50/55C1E7/fff&amp;text=U" alt="User Avatar" class="img-circle">
+                        </span>
+                        <div class="chat-body clearfix">
+                            <!-- <div class="header">
+                                <small text-muted"><span class="glyphicon glyphicon-time"></span>13 mins ago</small>
+                                <strong class="pull-right primary-font">Bhaumik Patel</strong>
+                            </div>-->
+                            <div class="header">
+                                <strong ng-class="chat.senderName === name ? 'pull-right primary-font' : 'primary-font'">{{chat.senderName}}:</strong>
+                                <small ng-class="chat.senderName === name ? 'text-muted' : 'pull-right text-muted'">
+                                    <span class="glyphicon glyphicon-time"></span>12 mins ago
+                                </small>
+                            </div>
+                            <p ng-bind-html="chat.body">
+                            </p>
+                            <img ng-show="chat.attachment" ng-src="chat.attachment" alt="User Avatar" class="img-circle">    
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="panel-footer">
+                <div class="input-group">
+                    <input id="btn-input" type="text" class="form-control input-sm" ng-model="message.body" placeholder="Type your message here...">
+                    <span class="input-group-btn">
+                        <button class="btn btn-primary btn-sm" ng-class="{'active': OnButtonImageClick}" ng-click="OnButtonImageClick = !OnButtonImageClick">
+                            <i class="fa fa-picture-o" aria-hidden="true"></i>
+                        </button>
+                        <button class="btn btn-primary btn-sm" ng-class="{'active': OnButtonImageClick}" ng-click="OnButtonImageClick = !OnButtonImageClick">
+                            <i class="fa fa-smile-o" aria-hidden="true"></i>
+                        </button>
+                        <button class="btn btn-warning btn-sm" id="btn-chat" ng-click="newMessage()">
+                            Send
+                        </button>
+                    </span>
+                </div>
+                <br/>
+                <div class="input-group" ng-show="OnButtonImageClick">
+                    <input ng-style="fileStyle" class="form-control input-sm" type="file" ng-file-select="" ng-model="file" name="file" accept="image/*">
+                    <span class="input-group-btn">
+                        <button class="btn btn-primary btn-sm" ng-click="upload(file)">
+                            Upload Image
+                        </button>
+                    </span>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="col-md-2">
+        <button class="btn btn-warning" ng-click="login()">Login</button>
+    </div>
+</div>
+
+
+<!--  <div class="panel panel-primary">
+            <div class="panel-heading">
+                <span class="glyphicon glyphicon-comment"></span> Chat
+            </div>
+            <div class="panel-body">
+                <ul class="chat" ng-repeat="chat in messages">
                     <li class="left clearfix">
                         <span class="chat-img pull-left">
                             <img src="http://placehold.it/50/55C1E7/fff&amp;text=U" alt="User Avatar" class="img-circle">
                         </span>
                         <div class="chat-body clearfix">
                             <div class="header">
-                                <strong class="primary-font">Jack Sparrow</strong> <small class="pull-right text-muted">
+                                <strong class="primary-font">{{chat.senderName}}:</strong> <small class="pull-right text-muted">
                                     <span class="glyphicon glyphicon-time"></span>12 mins ago
                                 </small>
                             </div>
-                            <p>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare
-                                dolor, quis ullamcorper ligula sodales.
+                            <p ng-bind-html="chat.body">
                             </p>
                         </div>
                     </li>
@@ -45,7 +95,7 @@
                         </span>
                         <div class="chat-body clearfix">
                             <div class="header">
-                                <small class=" text-muted"><span class="glyphicon glyphicon-time"></span>13 mins ago</small>
+                                <small text-muted"><span class="glyphicon glyphicon-time"></span>13 mins ago</small>
                                 <strong class="pull-right primary-font">Bhaumik Patel</strong>
                             </div>
                             <p>
@@ -91,25 +141,25 @@
                 <div class="input-group">
                     <input id="btn-input" type="text" class="form-control input-sm" placeholder="Type your message here...">
                     <span class="input-group-btn">
+                        <button class="btn btn-primary btn-sm" ng-class="{'active': OnButtonImageClick}" ng-click="OnButtonImageClick = !OnButtonImageClick">
+                            <i class="fa fa-picture-o" aria-hidden="true"></i>
+                        </button>
+                        <button class="btn btn-primary btn-sm" ng-class="{'active': OnButtonImageClick}" ng-click="OnButtonImageClick = !OnButtonImageClick">
+                            <i class="fa fa-smile-o" aria-hidden="true"></i>
+                        </button>
                         <button class="btn btn-warning btn-sm" id="btn-chat">
                             Send
                         </button>
                     </span>
                 </div>
+                <br/>
+                <div class="input-group" ng-show="OnButtonImageClick">
+                    <input ng-style="fileStyle" class="form-control input-sm" type="file" ng-file-select="" ng-model="file" name="file" accept="image/*">
+                    <span class="input-group-btn">
+                        <button class="btn btn-primary btn-sm" ng-click="upload(file)">
+                            Upload Image
+                        </button>
+                    </span>
+                </div>
             </div>
-                    <div>
-                        <label>File:</label>
-                        <input type="file" ng-file-select="" ng-model="file" name="file" accept="image/*">
-                    </div>
-
-                    <button ng-click="upload(file)">Submit</button>
-    
-                <br>
-        </div>
-
-    </div>
-
-    <div class="col-md-3">
-        <button class="btn btn-warning" ng-click="login()">Login</button>
-    </div>
-</div>
+        </div>-->

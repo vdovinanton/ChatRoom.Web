@@ -7,13 +7,13 @@ chatApp.factory('chatHub', function () {
             $.connection.hub.start();
         }
 
-        chatFactory.send = function(name, message) {
-            $.connection.chatHub.server.sendMessage(name, message);
+        chatFactory.send = function(data) {
+            $.connection.chatHub.server.sendMessage(data);
         }
 
         chatFactory.on = function (callback) {
-            $.connection.chatHub.client.broadcastMessage = function (name, message) {
-                callback(name, message);
+            $.connection.chatHub.client.broadcastMessage = function (data) {
+                callback(data);
             }
         }
 

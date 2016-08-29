@@ -1,15 +1,22 @@
 ﻿
-chatApp.factory('dataFactory', ['$http', '$q', 
-        function ($http, $q) {
+chatApp.factory('dataFactory', ['$http', '$upload',
+        function ($http, $upload) {
 
-        var urlBase = '/api/chat';
         var dataFactory = {};
 
         dataFactory.getUsers = function() {
-            return $http.get(urlBase);
+            return $http.get('/api/chat');
         }
 
-        /*dataFactory.getCustomers = function () {
+        dataFactory.upload = function(name, file) {
+            return $upload.upload({
+                url: 'api/fileUpload/upload',
+                fields: { 'username': name },
+                file: file
+            });
+        }
+
+            /*dataFactory.getCustomers = function () {
             return $http.get(urlBase);
         };
 
