@@ -137,7 +137,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Api\ChatController.cs" />
+    <Compile Include="Api\FileUploadController.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Extensions\HttpContentExtensions.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

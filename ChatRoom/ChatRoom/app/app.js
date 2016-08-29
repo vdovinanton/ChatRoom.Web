@@ -1,4 +1,5 @@
 ﻿
 var chatApp = angular.module('chatApp', [
-	'ngRoute'
+	'ngRoute',
+    'angularFileUpload'
 ]);

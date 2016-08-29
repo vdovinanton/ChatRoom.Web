@@ -97,6 +97,14 @@
                     </span>
                 </div>
             </div>
+                    <div>
+                        <label>File:</label>
+                        <input type="file" ng-file-select="" ng-model="file" name="file" accept="image/*">
+                    </div>
+
+                    <button ng-click="upload(file)">Submit</button>
+    
+                <br>
         </div>
 
     </div>

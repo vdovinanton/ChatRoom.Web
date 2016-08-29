@@ -1,6 +1,6 @@
 ﻿
-chatApp.controller('homeController', ['dataFactory', '$scope', '$routeParams', 'chatHub',
-        function (dataFactory, $scope, $routeParams, chatHub) {
+chatApp.controller('homeController', ['dataFactory', '$scope', '$routeParams', 'chatHub', '$upload',
+        function (dataFactory, $scope, $routeParams, chatHub, $upload) {
 
 	    $scope.title = "Home";
 	    $scope.name = "Guest";
@@ -25,6 +25,22 @@ chatApp.controller('homeController', ['dataFactory', '$scope', '$routeParams', '
             chatHub.send($scope.name, $scope.message);
             $scope.message = '';
         }
+
+        $scope.upload = function (file) {
+            if (file) {
+                $upload.upload({
+                    url: 'api/fileUpload/upload',
+                    fields: { 'username': $scope.username },
+                    file: file
+                }).success(function (data, status, headers, config) {
+                    console.log(config);
+                    alert("Thanks for the upload!\r\nFilename: " + config.file[0].name + "\r\nResponse: " + data);
+                }).error(function (error) {
+                    alert("Ooops, something went wrong!");
+                    console.log("Error!", error);
+                });
+            }
+        };
 
         chatHub.on(function(name, message) {
             var newMessage = name + ' says: ' + message;
