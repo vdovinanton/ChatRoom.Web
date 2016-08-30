@@ -14,7 +14,7 @@ chatApp.controller('homeController', ['dataFactory', '$scope', '$routeParams', '
 
 	    $scope.messages = [];
 
-	    $scope.onButtonImageClick = false;
+	    
 
         function getMock() {
             return dataFactory.getUsers().then(function (response) {
@@ -41,25 +41,32 @@ chatApp.controller('homeController', ['dataFactory', '$scope', '$routeParams', '
             return text.replace(urlRegex, function (url) {
                 return '<a href="' + url + '">' + extractDomain(url) + '</a>';
             });
-            // or alternatively
-            // return text.replace(urlRegex, '<a href="$1">$1</a>')
         }
 
         function activited() {
+            //updateScroll();
             chatHub.connect();
             console.log($scope.title + 'activited');
             getMock();
         }
         
         $scope.newMessage = function () {
-            var newMessage = {
-                senderName: $scope.name,
-                body: urlify($scope.message.body),
-                attachment: $scope.imageUr,
+
+            if ($scope.message.body || $scope.imageUr)
+            {
+                $scope.fileStyle = { "background-color": "white" }
+
+                var newMessage = {
+                    senderName: $scope.name,
+                    body: urlify($scope.message.body),
+                    attachment: $scope.imageUr
+                }
+                chatHub.send(newMessage);
+                
+                $scope.OnButtonImageClick = false;
+                $scope.message.body = "";
+                $scope.imageUr = "";
             }
-            chatHub.send(newMessage);
-            $scope.message = null;
-            $scope.imageUr = "";
         }
 
         $scope.upload = function (file) {
@@ -67,19 +74,15 @@ chatApp.controller('homeController', ['dataFactory', '$scope', '$routeParams', '
                 dataFactory.upload($scope.name, file).then(function (response) {
                     console.log(response.data);
                     $scope.imageUr = response.data;
-                    $scope.fileStyle = {
-                        "background-color": "#A9F5A9"
-                    }
+                    $scope.fileStyle = { "background-color": "#A9F5A9" }
                 }, function(error) {
                     console.log(error);
-                    $scope.fileStyle = {
-                        "background-color": "#F5A9A9"
-                    }
+                    $scope.fileStyle = { "background-color": "#F5A9A9" }
                 });
             }
         };
             
-        chatHub.on(function(data) {
+        chatHub.on(function (data) {
             var newMessage = {
                 senderName: data.SenderName,
                 body: data.Body,
@@ -91,4 +94,9 @@ chatApp.controller('homeController', ['dataFactory', '$scope', '$routeParams', '
         });
 
         activited();
+
+        function updateScroll() {
+            var element = document.getElementById("chat");
+            element.scrollTop = element.scrollHeight;
+        }
 }]);
