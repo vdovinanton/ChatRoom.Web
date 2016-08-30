@@ -1,20 +1,24 @@
 ﻿
-chatApp.controller('homeController', ['dataFactory', '$scope', '$routeParams', 'chatHub', '$upload', '$sce',
-        function (dataFactory, $scope, $routeParams, chatHub, $upload, $sce) {
+chatApp.controller('homeController', ['dataFactory', '$scope', '$routeParams', 'chatHub',
+        function (dataFactory, $scope, $routeParams, chatHub) {
 
 	    $scope.title = "Home";
 	    $scope.name = "Guest";
         $scope.imageUr = "";
 
-	    $scope.message = {
-            senderName: "",
-	        body: "",
-	        attachment: ""
-	    };
+        $scope.message = {
+            SenderName: "",
+            Body: "",
+            Attachment: ""
+        }
+
+            /*$scope.message = {
+                senderName: "",
+                body: "",
+                attachment: ""
+            };*/
 
 	    $scope.messages = [];
-
-	    
 
         function getMock() {
             return dataFactory.getUsers().then(function (response) {
@@ -24,7 +28,7 @@ chatApp.controller('homeController', ['dataFactory', '$scope', '$routeParams', '
             });
         }
 
-        //find & remove protocol (http, ftp, etc.) and get domain
+        // find & remove protocol (http, ftp, etc.) and get domain
         function extractDomain(url) {
             var domain;
             if (url.indexOf("://") > -1) {
@@ -36,6 +40,7 @@ chatApp.controller('homeController', ['dataFactory', '$scope', '$routeParams', '
             return domain.split(':')[0];
         }
 
+        // parse url
         function urlify(text) {
             var urlRegex = /(https?:\/\/[^\s]+)/g;
             return text.replace(urlRegex, function (url) {
@@ -43,28 +48,31 @@ chatApp.controller('homeController', ['dataFactory', '$scope', '$routeParams', '
             });
         }
 
+        // like a start point
         function activited() {
-            //updateScroll();
             chatHub.connect();
-            console.log($scope.title + 'activited');
             getMock();
         }
         
         $scope.newMessage = function () {
-
-            if ($scope.message.body || $scope.imageUr)
+            if ($scope.message.Body || $scope.imageUr)
             {
                 $scope.fileStyle = { "background-color": "white" }
 
                 var newMessage = {
-                    senderName: $scope.name,
-                    body: urlify($scope.message.body),
-                    attachment: $scope.imageUr
+                    SenderName: $scope.name,
+                    Body: urlify($scope.message.Body),
+                    Attachment: $scope.imageUr
                 }
+
+                /*$scope.message.SenderName = $scope.name;
+                $scope.message.Body = urlify($scope.message.Body);
+                $scope.message.Attachment = $scope.imageUr;*/
+
                 chatHub.send(newMessage);
                 
                 $scope.OnButtonImageClick = false;
-                $scope.message.body = "";
+                $scope.message.Body = "";
                 $scope.imageUr = "";
             }
         }
@@ -72,7 +80,7 @@ chatApp.controller('homeController', ['dataFactory', '$scope', '$routeParams', '
         $scope.upload = function (file) {
             if (file) {
                 dataFactory.upload($scope.name, file).then(function (response) {
-                    console.log(response.data);
+                    //console.log(response.data);
                     $scope.imageUr = response.data;
                     $scope.fileStyle = { "background-color": "#A9F5A9" }
                 }, function(error) {
@@ -82,21 +90,22 @@ chatApp.controller('homeController', ['dataFactory', '$scope', '$routeParams', '
             }
         };
             
+        // event on new message
         chatHub.on(function (data) {
             var newMessage = {
-                senderName: data.SenderName,
-                body: data.Body,
-                attachment: data.Attachment
+                SenderName: data.SenderName,
+                Body: data.Body,
+                Attachment: data.Attachment
             }
+
+            /*$scope.message.senderName = data.SenderName;
+            $scope.message.body = data.Body;
+            $scope.message.attachment = data.Attachment;
+*/
             $scope.messages.push(newMessage);
-            console.log(data);
+            console.log(newMessage);
             $scope.$apply();
         });
 
         activited();
-
-        function updateScroll() {
-            var element = document.getElementById("chat");
-            element.scrollTop = element.scrollHeight;
-        }
 }]);
