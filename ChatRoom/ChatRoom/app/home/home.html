@@ -4,21 +4,21 @@
 
     <div class="col-md-6">
         <div>
-            Name: <input type="text" ng-model="name"/><br/>
+            Name: <input type="text" ng-model="message.SenderName"/><br/>
         <div class="panel panel-primary">
             <div class="panel-heading">
                 <span class="glyphicon glyphicon-comment"></span> Chat
             </div>
             <div class="panel-body">
                 <ul class="chat" ng-repeat="chat in messages | reverse">
-                    <li ng-class="chat.SenderName === name ? 'right clearfix' : 'left clearfix'">
-                        <span ng-class="chat.SenderName === name ? 'chat-img pull-right' : 'chat-img pull-left'">
+                    <li ng-class="chat.SenderName === message.SenderName ? 'right clearfix' : 'left clearfix'">
+                        <span ng-class="chat.SenderName === message.SenderName ? 'chat-img pull-right' : 'chat-img pull-left'">
                             <img src="http://placehold.it/50/55C1E7/fff&amp;text=U" alt="User Avatar" class="img-circle">
                         </span>
                         <div class="chat-body clearfix">
                             <div class="header">
-                                <strong ng-class="chat.SenderName === name ? 'pull-right primary-font' : 'primary-font'">{{chat.senderName}}</strong>
-                                <small ng-class="chat.SenderName === name ? 'text-muted' : 'pull-right text-muted'">
+                                <strong ng-class="chat.SenderName === message.SenderName ? 'pull-right primary-font' : 'primary-font'">{{chat.senderName}}</strong>
+                                <small ng-class="chat.SenderName === message.SenderName ? 'text-muted' : 'pull-right text-muted'">
                                     <span class="glyphicon glyphicon-time"></span>12 mins ago
                                 </small>
                             </div>

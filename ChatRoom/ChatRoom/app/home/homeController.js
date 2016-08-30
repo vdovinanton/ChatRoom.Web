@@ -3,22 +3,12 @@ chatApp.controller('homeController', ['dataFactory', '$scope', '$routeParams', '
         function (dataFactory, $scope, $routeParams, chatHub) {
 
 	    $scope.title = "Home";
-	    $scope.name = "Guest";
-        $scope.imageUr = "";
-
+	    $scope.messages = [];
         $scope.message = {
-            SenderName: "",
+            SenderName: "Guest",
             Body: "",
             Attachment: ""
         }
-
-            /*$scope.message = {
-                senderName: "",
-                body: "",
-                attachment: ""
-            };*/
-
-	    $scope.messages = [];
 
         function getMock() {
             return dataFactory.getUsers().then(function (response) {
@@ -55,33 +45,23 @@ chatApp.controller('homeController', ['dataFactory', '$scope', '$routeParams', '
         }
         
         $scope.newMessage = function () {
-            if ($scope.message.Body || $scope.imageUr)
+            if ($scope.message.Body || $scope.message.Attachment)
             {
-                $scope.fileStyle = { "background-color": "white" }
 
-                var newMessage = {
-                    SenderName: $scope.name,
-                    Body: urlify($scope.message.Body),
-                    Attachment: $scope.imageUr
-                }
-
-                /*$scope.message.SenderName = $scope.name;
                 $scope.message.Body = urlify($scope.message.Body);
-                $scope.message.Attachment = $scope.imageUr;*/
 
-                chatHub.send(newMessage);
+                chatHub.send($scope.message);
                 
                 $scope.OnButtonImageClick = false;
                 $scope.message.Body = "";
-                $scope.imageUr = "";
+                $scope.message.Attachment = "";
             }
         }
 
         $scope.upload = function (file) {
             if (file) {
-                dataFactory.upload($scope.name, file).then(function (response) {
-                    //console.log(response.data);
-                    $scope.imageUr = response.data;
+                dataFactory.upload($scope.message.SenderName, file).then(function (response) {
+                    $scope.message.Attachment = response.data;
                     $scope.fileStyle = { "background-color": "#A9F5A9" }
                 }, function(error) {
                     console.log(error);
@@ -92,18 +72,8 @@ chatApp.controller('homeController', ['dataFactory', '$scope', '$routeParams', '
             
         // event on new message
         chatHub.on(function (data) {
-            var newMessage = {
-                SenderName: data.SenderName,
-                Body: data.Body,
-                Attachment: data.Attachment
-            }
-
-            /*$scope.message.senderName = data.SenderName;
-            $scope.message.body = data.Body;
-            $scope.message.attachment = data.Attachment;
-*/
-            $scope.messages.push(newMessage);
-            console.log(newMessage);
+            $scope.messages.push(data);
+            console.log(data);
             $scope.$apply();
         });
 
