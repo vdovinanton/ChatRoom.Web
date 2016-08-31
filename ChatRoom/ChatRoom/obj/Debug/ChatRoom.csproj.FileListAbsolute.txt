@@ -84,3 +84,7 @@ D:\_github\ChatRoom.Web\ChatRoom\ChatRoom\bin\EntityFramework.SqlServer.dll
 D:\_github\ChatRoom.Web\ChatRoom\ChatRoom\bin\ChatRoom.Entity.pdb
 D:\_github\ChatRoom.Web\ChatRoom\ChatRoom\bin\EntityFramework.xml
 D:\_github\ChatRoom.Web\ChatRoom\ChatRoom\bin\EntityFramework.SqlServer.xml
+D:\_github\ChatRoom.Web\ChatRoom\ChatRoom\bin\EasyNetQ.dll
+D:\_github\ChatRoom.Web\ChatRoom\ChatRoom\bin\RabbitMQ.Client.dll
+D:\_github\ChatRoom.Web\ChatRoom\ChatRoom\bin\EasyNetQ.xml
+D:\_github\ChatRoom.Web\ChatRoom\ChatRoom\bin\RabbitMQ.Client.xml

@@ -46,7 +46,8 @@ namespace ChatRoom.Api
             using (var fs = new BinaryWriter(new FileStream($@"{path}\{fileName}", FileMode.Append, FileAccess.Write)))           
                 fs.Write(file);
 
-            return $"{domianAddress.Scheme}://{domianAddress.Authority}/{folderName}/{fileName}";
+            return $"{folderName}/{fileName}";
+            //{domianAddress.Scheme}://{domianAddress.Authority}/
         }
     }
 }

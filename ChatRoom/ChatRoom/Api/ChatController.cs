@@ -61,7 +61,6 @@ namespace ChatRoom.Api
         public HttpResponseMessage GetMessages()
         {
             var messages = _repository.Messages.GetAll();
-
             var messageMapping = MessageViewModel.MessageMapping(messages);
 
             var result = Request.CreateResponse(HttpStatusCode.OK, messageMapping);

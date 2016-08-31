@@ -1,29 +1,45 @@
-﻿using ChatRoom.Entity;
-using ChatRoom.Entity.Interfaces;
+﻿using System.Text;
 using ChatRoom.Model;
 using Microsoft.AspNet.SignalR;
+using Newtonsoft.Json;
+using RabbitMQ.Client;
 
 namespace ChatRoom.Hubs
 {
     public class ChatHub : Hub
     {
-        private readonly IUnitOfWork _repository;
+        private readonly ConnectionFactory _connection;
         public ChatHub()
         {
-            _repository = new UnitOfWork(new ChatContext());
+            _connection = new ConnectionFactory
+            {
+                HostName = "localhost",
+                UserName = "guest",
+                Password = "guest"
+            };
         }
 
         public void SendMessage(MessageViewModel message)
         {
             Clients.All.broadcastMessage(message);
 
-            _repository.Users.AddMessages(message.SenderId, message.Body, message.Attachment);
-            _repository.Complete();
-        }
+            using (var connection = _connection.CreateConnection())
+            {
+                using (var channel = connection.CreateModel())
+                {
+                    channel.ExchangeDeclare(exchange: "test-exchange",
+                        type: "fanout",
+                        durable: true);
 
-        public void Hello()
-        {
-            Clients.All.hello();
+                    var json = JsonConvert.SerializeObject(message);
+                    var body = Encoding.UTF8.GetBytes(json);
+
+                    channel.BasicPublish(exchange: "test-exchange",
+                        routingKey: "",
+                        basicProperties: null,
+                        body: body);
+                }
+            }
         }
     }
 }

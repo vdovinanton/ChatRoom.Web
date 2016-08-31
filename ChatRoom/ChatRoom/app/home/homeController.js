@@ -2,6 +2,7 @@
 chatApp.controller('homeController', ['dataFactory', '$scope', '$routeParams', 'chatHub',
         function (dataFactory, $scope, $routeParams, chatHub) {
 
+        var domian = location.protocol + '//' + location.host + '/';
 	    $scope.title = "Home";
 	    $scope.messages = [];
         $scope.message = {
@@ -31,16 +32,7 @@ chatApp.controller('homeController', ['dataFactory', '$scope', '$routeParams', '
             });
         }
 
-        function getMessageHistory() {
-            return dataFactory.getMessages().then(function (response) {
-                console.log('history', response);
-                $scope.messages.push(response.data);
-            }, function (error) {
-                
-            });
-        }
-
-            // like a start point
+        // like a start point
         function activited() {
             dataFactory.getUser($routeParams.id).then(function (response) {
                 chatHub.stop();
@@ -50,14 +42,9 @@ chatApp.controller('homeController', ['dataFactory', '$scope', '$routeParams', '
                     $scope.message.SenderId = response.data.Id;
 
                     dataFactory.getMessages().then(function (response) {
-                        console.log('history', response);
                         $scope.messages = response.data;
-                        /*angular.forEach(response.data, function(value, key) {
-                            console.log('value ' + value + 'key ' + key);
-                        });*/
-                        //$scope.messages.push(response.data);
                     }, function (error) {
-
+                        console.log(error);
                     });
 
                     $scope.message.Body = $scope.message.SenderName + " has joined to channel";
@@ -83,13 +70,15 @@ chatApp.controller('homeController', ['dataFactory', '$scope', '$routeParams', '
         }
 
         $scope.logout = function () {
-            location.href = '/#/';
+            console.log(domian);
+            console.log(location);
+            //location.href = '/#/';
         }
 
         $scope.upload = function (file) {
             if (file) {
                 dataFactory.upload($scope.message.SenderName, file).then(function (response) {
-                    $scope.message.Attachment = response.data;
+                    $scope.message.Attachment = domian + response.data;
                     $scope.fileStyle = { "background-color": "#A9F5A9" }
                 }, function(error) {
                     console.log(error);
@@ -103,7 +92,7 @@ chatApp.controller('homeController', ['dataFactory', '$scope', '$routeParams', '
             var msg = {
                 SenderName: data.SenderName,
                 Body: data.Body,
-                Attachment: data.Attachment
+                Attachment: domian + data.Attachment
             }
             $scope.messages.push(msg);
             $scope.messages = $scope.messages;
