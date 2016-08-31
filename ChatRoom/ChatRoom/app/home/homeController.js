@@ -2,7 +2,10 @@
 chatApp.controller('homeController', ['dataFactory', '$scope', '$routeParams', 'chatHub',
         function (dataFactory, $scope, $routeParams, chatHub) {
 
+        // for the full image url
         var domian = location.protocol + '//' + location.host + '/';
+        var imgUrl = "";
+
         $scope.isLoad = true;
 	    $scope.title = "Home";
 	    $scope.messages = [];
@@ -11,7 +14,7 @@ chatApp.controller('homeController', ['dataFactory', '$scope', '$routeParams', '
             SenderId: "",
             Body: "",
             Attachment: "",
-            DateTime: 0
+            DateTime: new Date().getMilliseconds()
         }
 
         // find & remove protocol (http, ftp, etc.) and get domain
@@ -49,9 +52,6 @@ chatApp.controller('homeController', ['dataFactory', '$scope', '$routeParams', '
                     }, function (error) {
                         console.log(error);
                     });
-
-                    $scope.message.Body = $scope.message.SenderName + " has joined to channel";
-                    $scope.newMessage();
                 });
                 console.log(response.data);
             }, function (error) {
@@ -63,27 +63,22 @@ chatApp.controller('homeController', ['dataFactory', '$scope', '$routeParams', '
             if ($scope.message.Body || $scope.message.Attachment)
             {
                 $scope.message.Body = urlify($scope.message.Body);
-                $scope.message.DateTime = new Date().getMilliseconds();
+                $scope.message.Attachment = imgUrl;
                 console.log($scope.message);
                 chatHub.send($scope.message);
                 
                 $scope.OnButtonImageClick = false;
                 $scope.message.Body = "";
                 $scope.message.Attachment = "";
-                $scope.message.DateTime = 0;
+                imgUrl = "";
             }
-        }
-
-        $scope.logout = function () {
-            console.log(domian);
-            console.log(location);
-            //location.href = '/#/';
         }
 
         $scope.upload = function (file) {
             if (file) {
                 dataFactory.upload($scope.message.SenderName, file).then(function (response) {
-                    $scope.message.Attachment = domian + response.data;
+                    $scope.message.Attachment = response.data;
+                    imgUrl = response.data;
                     $scope.fileStyle = { "background-color": "#A9F5A9" }
                 }, function(error) {
                     console.log(error);
@@ -95,6 +90,7 @@ chatApp.controller('homeController', ['dataFactory', '$scope', '$routeParams', '
         // event on new message
         chatHub.on(function (data) {
             $scope.message.Attachment = "";
+            urlImg = data.Attachment;
             var msg = {
                 SenderName: data.SenderName,
                 Body: data.Body,

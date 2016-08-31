@@ -36,17 +36,5 @@ chatApp.factory('dataFactory', ['$http', '$upload',
             });
         }
 
-            /*dataFactory.getCustomers = function () {
-            return $http.get(urlBase);
-        };
-
-        dataFactory.getCustomer = function (id) {
-            return $http.get(urlBase + '/' + id);
-        };
-
-        dataFactory.insertCustomer = function (cust) {
-            return $http.post(urlBase, cust);
-        };*/
-
         return dataFactory;
 }]);

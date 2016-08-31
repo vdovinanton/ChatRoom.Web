@@ -68,17 +68,5 @@ namespace ChatRoom.Api
 
             return result;
         }
-
-        [Route("RootDomian")]
-        public HttpResponseMessage GetDomian()
-        {
-            var users = new List<string>
-            {
-                "Fredd Perry",
-                "Lacoste",
-                "Jhonn Smith"
-            };
-            return Request.CreateResponse(HttpStatusCode.OK, users);
-        }
     }
 }

@@ -22,9 +22,10 @@
                         <div class="chat-body clearfix">
                             <div class="header">
                                 <strong ng-class="chat.SenderName === message.SenderName ? 'pull-right primary-font' : 'primary-font'">{{chat.SenderName}}</strong>
-                                <small ng-class="chat.SenderName === message.SenderName ? 'text-muted' : 'pull-right text-muted'">
+                                <!-- TODO: TIME -->
+                                <!-- <small ng-class="chat.SenderName === message.SenderName ? 'text-muted' : 'pull-right text-muted'">
                                     <span class="glyphicon glyphicon-time"></span>{{chat.DateTime | time}}
-                                </small>
+                                </small>-->
                             </div>
                             <p ng-bind-html="chat.Body"></p>
                             <br/>
@@ -62,5 +63,5 @@
     </div>
 </div>
 <div class="col-md-2">
-    <button class="btn btn-warning" ng-click="logout()">Logout</button>
+    <button class="btn btn-warning" onclick="location.href='#';">Logout</button>
 </div>

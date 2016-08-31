@@ -58,9 +58,6 @@
     <Compile Include="Interfaces\IUnitOfWork.cs" />
     <Compile Include="Interfaces\IUserRepository.cs" />
     <Compile Include="Migrations\201608311351005_addManytoMany.cs" />
-    <Compile Include="Migrations\201608311351005_addManytoMany.Designer.cs">
-      <DependentUpon>201608311351005_addManytoMany.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\201608311358034_addforegineproperies.cs" />
     <Compile Include="Migrations\201608311358034_addforegineproperies.Designer.cs">
       <DependentUpon>201608311358034_addforegineproperies.cs</DependentUpon>
@@ -69,9 +66,12 @@
     <Compile Include="Migrations\201608311416169_addforegineproperies2.Designer.cs">
       <DependentUpon>201608311416169_addforegineproperies2.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201608311539391_userKeytoString.cs" />
-    <Compile Include="Migrations\201608311539391_userKeytoString.Designer.cs">
-      <DependentUpon>201608311539391_userKeytoString.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201608311351005_addManytoMany.resx">
+      <DependentUpon>201608311351005_addManytoMany.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201608311539391_userKeytoString.resx" />
+    <Compile Include="Migrations\201608311351005_addManytoMany.Designer.cs">
+      <DependentUpon>201608311539391_userKeytoString.resx</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -81,17 +81,14 @@
     <Compile Include="UnitOfWork.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201608311351005_addManytoMany.resx">
-      <DependentUpon>201608311351005_addManytoMany.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201608311358034_addforegineproperies.resx">
       <DependentUpon>201608311358034_addforegineproperies.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201608311416169_addforegineproperies2.resx">
       <DependentUpon>201608311416169_addforegineproperies2.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201608311539391_userKeytoString.resx">
-      <DependentUpon>201608311539391_userKeytoString.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201608311351005_addManytoMany.Designer.resx">
+      <DependentUpon>201608311539391_userKeytoString.resx</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

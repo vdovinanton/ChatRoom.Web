@@ -25,9 +25,7 @@ namespace ChatRoom.Model
             SenderName = message.User.FirstOrDefault()?.Name,
             Body = message.Body,
             Attachment = message.Image,
-            DateTime = (System.DateTime.Now - message.DateTime).TotalMilliseconds/*message.DateTime
-                .Subtract(new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Local))
-                .TotalMilliseconds*/
+            DateTime = (System.DateTime.Now - message.DateTime).TotalMilliseconds
         }).ToList();
     }
 }

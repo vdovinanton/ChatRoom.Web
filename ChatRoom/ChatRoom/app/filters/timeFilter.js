@@ -5,17 +5,6 @@
 
         var ret = "";
 
-        if (years) {
-            ret += " " + years + ' y.';
-        }
-        var days = Math.floor((temp %= 31536000) / 86400);
-        if (days) {
-            ret += " " + days + ' d.';
-        }
-        var hours = Math.floor((temp %= 86400) / 3600);
-        if (hours) {
-            ret += " " + hours + ' h.';
-        }
         var minutes = Math.floor((temp %= 3600) / 60);
         if (minutes) {
             ret += " " + minutes + ' min.';

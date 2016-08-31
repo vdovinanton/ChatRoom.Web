@@ -8,8 +8,9 @@ D:\_github\ChatRoom.Web\ChatRoom\ChatRoom.Entity\bin\Debug\EntityFramework.SqlSe
 D:\_github\ChatRoom.Web\ChatRoom\ChatRoom.Entity\obj\Debug\ChatRoom.Entity.csprojResolveAssemblyReference.cache
 D:\_github\ChatRoom.Web\ChatRoom\ChatRoom.Entity\obj\Debug\ChatRoom.Entity.dll
 D:\_github\ChatRoom.Web\ChatRoom\ChatRoom.Entity\obj\Debug\ChatRoom.Entity.pdb
-D:\_github\ChatRoom.Web\ChatRoom\ChatRoom.Entity\obj\Debug\ChatRoom.Entity.Migrations.addManytoMany.resources
 D:\_github\ChatRoom.Web\ChatRoom\ChatRoom.Entity\obj\Debug\ChatRoom.Entity.csproj.GenerateResource.Cache
 D:\_github\ChatRoom.Web\ChatRoom\ChatRoom.Entity\obj\Debug\ChatRoom.Entity.Migrations.addforegineproperies.resources
 D:\_github\ChatRoom.Web\ChatRoom\ChatRoom.Entity\obj\Debug\ChatRoom.Entity.Migrations.addforegineproperies2.resources
-D:\_github\ChatRoom.Web\ChatRoom\ChatRoom.Entity\obj\Debug\ChatRoom.Entity.Migrations.userKeytoString.resources
+D:\_github\ChatRoom.Web\ChatRoom\ChatRoom.Entity\obj\Debug\ChatRoom.Entity.Migrations.201608311351005_addManytoMany.Designer.resources
+D:\_github\ChatRoom.Web\ChatRoom\ChatRoom.Entity\obj\Debug\ChatRoom.Entity.Migrations.201608311539391_userKeytoString.resources
+D:\_github\ChatRoom.Web\ChatRoom\ChatRoom.Entity\obj\Debug\ChatRoom.Entity.Migrations.addManytoMany.resources
