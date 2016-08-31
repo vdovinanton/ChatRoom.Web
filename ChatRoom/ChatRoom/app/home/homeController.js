@@ -3,13 +3,15 @@ chatApp.controller('homeController', ['dataFactory', '$scope', '$routeParams', '
         function (dataFactory, $scope, $routeParams, chatHub) {
 
         var domian = location.protocol + '//' + location.host + '/';
+        $scope.isLoad = true;
 	    $scope.title = "Home";
 	    $scope.messages = [];
         $scope.message = {
             SenderName: "",
             SenderId: "",
             Body: "",
-            Attachment: ""
+            Attachment: "",
+            DateTime: 0
         }
 
         // find & remove protocol (http, ftp, etc.) and get domain
@@ -43,6 +45,7 @@ chatApp.controller('homeController', ['dataFactory', '$scope', '$routeParams', '
 
                     dataFactory.getMessages().then(function (response) {
                         $scope.messages = response.data;
+                        $scope.isLoad = false;
                     }, function (error) {
                         console.log(error);
                     });
@@ -60,12 +63,14 @@ chatApp.controller('homeController', ['dataFactory', '$scope', '$routeParams', '
             if ($scope.message.Body || $scope.message.Attachment)
             {
                 $scope.message.Body = urlify($scope.message.Body);
+                $scope.message.DateTime = new Date().getMilliseconds();
                 console.log($scope.message);
                 chatHub.send($scope.message);
                 
                 $scope.OnButtonImageClick = false;
                 $scope.message.Body = "";
                 $scope.message.Attachment = "";
+                $scope.message.DateTime = 0;
             }
         }
 
@@ -89,10 +94,12 @@ chatApp.controller('homeController', ['dataFactory', '$scope', '$routeParams', '
             
         // event on new message
         chatHub.on(function (data) {
+            $scope.message.Attachment = "";
             var msg = {
                 SenderName: data.SenderName,
                 Body: data.Body,
-                Attachment: domian + data.Attachment
+                Attachment: data.Attachment === "" ? "" : domian + data.Attachment,
+                DateTime: data.DateTime
             }
             $scope.messages.push(msg);
             $scope.messages = $scope.messages;

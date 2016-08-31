@@ -4,30 +4,37 @@
 
 <div class="col-md-6">
     <div>
+        <!-- CHAT PANEL -->
         <div class="panel panel-primary">
             <div class="panel-heading">
                 <span class="glyphicon glyphicon-comment"></span> {{message.SenderName}}
             </div>
+            <!-- DIALO PANEL -->
             <div class="panel-body">
-                <ul class="chat" ng-repeat="chat in messages | reverse">
+                <ul ng-show="!isLoad" class="chat" ng-repeat="chat in messages | reverse">
                     <li ng-class="chat.SenderName === message.SenderName ? 'right clearfix' : 'left clearfix'">
-                        <span ng-class="chat.SenderName === message.SenderName ? 'chat-img pull-right' : 'chat-img pull-left'">
-                            <img src="http://placehold.it/50/55C1E7/fff&amp;text=U" alt="User Avatar" class="img-circle">
+                        <span ng-show="chat.SenderName === message.SenderName" class="chat-img pull-right">
+                            <img src="http://placehold.it/50/FA6F57/fff&amp;text=I'm" alt="User Avatar" class="img-circle">
+                        </span>
+                        <span ng-show="chat.SenderName !== message.SenderName" class="chat-img pull-left">
+                            <img src="http://placehold.it/50/55C1E7/fff&amp;text=User" alt="User Avatar" class="img-circle">
                         </span>
                         <div class="chat-body clearfix">
                             <div class="header">
                                 <strong ng-class="chat.SenderName === message.SenderName ? 'pull-right primary-font' : 'primary-font'">{{chat.SenderName}}</strong>
                                 <small ng-class="chat.SenderName === message.SenderName ? 'text-muted' : 'pull-right text-muted'">
-                                    <span class="glyphicon glyphicon-time"></span>12 mins ago
+                                    <span class="glyphicon glyphicon-time"></span>{{chat.DateTime | time}}
                                 </small>
                             </div>
                             <p ng-bind-html="chat.Body"></p>
                             <br/>
-                            <img ng-show="chat.Attachment" ng-src="{{chat.Attachment}}" class="img-rounded" width="304" height="236" alt="">
+                            <img ng-show="chat.Attachment" ng-src="{{chat.Attachment}}" class="img-rounded" style="max-width: 40%" alt="">
                         </div>
                     </li>
                 </ul>
+                <i ng-show="isLoad" class="fa fa-spinner fa-spin fa fa-tasks"></i>
             </div>
+            <!-- CHAT ACTIONS -->
             <div class="panel-footer">
                 <div class="input-group">
                     <input id="btn-input" type="text" class="form-control input-sm" ng-model="message.Body" placeholder="Type your message here...">
@@ -57,99 +64,3 @@
 <div class="col-md-2">
     <button class="btn btn-warning" ng-click="logout()">Logout</button>
 </div>
-
-
-<!--  <div class="panel panel-primary">
-            <div class="panel-heading">
-                <span class="glyphicon glyphicon-comment"></span> Chat
-            </div>
-            <div class="panel-body">
-                <ul class="chat" ng-repeat="chat in messages">
-                    <li class="left clearfix">
-                        <span class="chat-img pull-left">
-                            <img src="http://placehold.it/50/55C1E7/fff&amp;text=U" alt="User Avatar" class="img-circle">
-                        </span>
-                        <div class="chat-body clearfix">
-                            <div class="header">
-                                <strong class="primary-font">{{chat.senderName}}:</strong> <small class="pull-right text-muted">
-                                    <span class="glyphicon glyphicon-time"></span>12 mins ago
-                                </small>
-                            </div>
-                            <p ng-bind-html="chat.body">
-                            </p>
-                        </div>
-                    </li>
-                    <li class="right clearfix">
-                        <span class="chat-img pull-right">
-                            <img src="http://placehold.it/50/FA6F57/fff&amp;text=ME" alt="User Avatar" class="img-circle">
-                        </span>
-                        <div class="chat-body clearfix">
-                            <div class="header">
-                                <small text-muted"><span class="glyphicon glyphicon-time"></span>13 mins ago</small>
-                                <strong class="pull-right primary-font">Bhaumik Patel</strong>
-                            </div>
-                            <p>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare
-                                dolor, quis ullamcorper ligula sodales.
-                            </p>
-                        </div>
-                    </li>
-                    <li class="left clearfix">
-                        <span class="chat-img pull-left">
-                            <img src="http://placehold.it/50/55C1E7/fff&amp;text=U" alt="User Avatar" class="img-circle">
-                        </span>
-                        <div class="chat-body clearfix">
-                            <div class="header">
-                                <strong class="primary-font">Jack Sparrow</strong> <small class="pull-right text-muted">
-                                    <span class="glyphicon glyphicon-time"></span>14 mins ago
-                                </small>
-                            </div>
-                            <p>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare
-                                dolor, quis ullamcorper ligula sodales.
-                            </p>
-                        </div>
-                    </li>
-                    <li class="right clearfix">
-                        <span class="chat-img pull-right">
-                            <img src="http://placehold.it/50/FA6F57/fff&amp;text=ME" alt="User Avatar" class="img-circle">
-                        </span>
-                        <div class="chat-body clearfix">
-                            <div class="header">
-                                <small class=" text-muted"><span class="glyphicon glyphicon-time"></span>15 mins ago</small>
-                                <strong class="pull-right primary-font">Bhaumik Patel</strong>
-                            </div>
-                            <p>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare
-                                dolor, quis ullamcorper ligula sodales.
-                            </p>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-            <div class="panel-footer">
-                <div class="input-group">
-                    <input id="btn-input" type="text" class="form-control input-sm" placeholder="Type your message here...">
-                    <span class="input-group-btn">
-                        <button class="btn btn-primary btn-sm" ng-class="{'active': OnButtonImageClick}" ng-click="OnButtonImageClick = !OnButtonImageClick">
-                            <i class="fa fa-picture-o" aria-hidden="true"></i>
-                        </button>
-                        <button class="btn btn-primary btn-sm" ng-class="{'active': OnButtonImageClick}" ng-click="OnButtonImageClick = !OnButtonImageClick">
-                            <i class="fa fa-smile-o" aria-hidden="true"></i>
-                        </button>
-                        <button class="btn btn-warning btn-sm" id="btn-chat">
-                            Send
-                        </button>
-                    </span>
-                </div>
-                <br/>
-                <div class="input-group" ng-show="OnButtonImageClick">
-                    <input ng-style="fileStyle" class="form-control input-sm" type="file" ng-file-select="" ng-model="file" name="file" accept="image/*">
-                    <span class="input-group-btn">
-                        <button class="btn btn-primary btn-sm" ng-click="upload(file)">
-                            Upload Image
-                        </button>
-                    </span>
-                </div>
-            </div>
-        </div>-->

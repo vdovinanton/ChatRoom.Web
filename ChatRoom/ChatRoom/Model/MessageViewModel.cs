@@ -12,6 +12,7 @@ namespace ChatRoom.Model
         public int SenderId { get; set; }
         public string Body { get; set; }
         public string Attachment { get; set; }
+        public double DateTime { get; set; }
 
 
         /// <summary>
@@ -23,20 +24,10 @@ namespace ChatRoom.Model
         {
             SenderName = message.User.FirstOrDefault()?.Name,
             Body = message.Body,
-            Attachment = message.Image
+            Attachment = message.Image,
+            DateTime = (System.DateTime.Now - message.DateTime).TotalMilliseconds/*message.DateTime
+                .Subtract(new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Local))
+                .TotalMilliseconds*/
         }).ToList();
     }
 }
-
-
-/*var result = new List<MessageViewModel>();
-            foreach (var message in messages)
-            {
-                result.Add(new MessageViewModel
-                {
-                    SenderName = message.User.FirstOrDefault()?.Name,
-                    Body = message.Body,
-                    Attachment = message.Image
-                });
-            }
-            return result;*/
