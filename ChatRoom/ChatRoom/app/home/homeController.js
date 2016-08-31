@@ -42,7 +42,6 @@ chatApp.controller('homeController', ['dataFactory', '$scope', '$routeParams', '
             dataFactory.getUser($routeParams.id).then(function (response) {
                 chatHub.stop();
                 chatHub.connect().done(function () {
-                    console.log(response);
                     $scope.message.SenderName = response.data.Name;
                     $scope.message.SenderId = response.data.Id;
 
@@ -53,7 +52,6 @@ chatApp.controller('homeController', ['dataFactory', '$scope', '$routeParams', '
                         console.log(error);
                     });
                 });
-                console.log(response.data);
             }, function (error) {
                 console.log(error);
             });
@@ -64,7 +62,8 @@ chatApp.controller('homeController', ['dataFactory', '$scope', '$routeParams', '
             {
                 $scope.message.Body = urlify($scope.message.Body);
                 $scope.message.Attachment = imgUrl;
-                console.log($scope.message);
+                
+                // publish message
                 chatHub.send($scope.message);
                 
                 $scope.OnButtonImageClick = false;
@@ -99,7 +98,6 @@ chatApp.controller('homeController', ['dataFactory', '$scope', '$routeParams', '
             }
             $scope.messages.push(msg);
             $scope.messages = $scope.messages;
-            console.log($scope.messages);
             $scope.$apply();
         });
 

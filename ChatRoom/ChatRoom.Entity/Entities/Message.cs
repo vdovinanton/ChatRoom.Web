@@ -7,11 +7,8 @@ namespace ChatRoom.Entity.Entities
 {
     public class Message
     {
-        //[Key] 
         public int Id { get; set; }
 
-        //public string UserId { get; set; }
-        //[ForeignKey("UserId")]
         public virtual ICollection<User> User { get; set; }
 
         public string Body { get; set; }
