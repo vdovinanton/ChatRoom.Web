@@ -1,6 +1,6 @@
 ﻿
-chatApp.controller('loginController', ['dataFactory', '$scope', '$routeParams',
-        function (dataFactory, $scope, $routeParams) {
+chatApp.controller('loginController', ['dataFactory', '$scope',
+        function (dataFactory, $scope) {
 
             $scope.title = "login";
             $scope.Name = '';
@@ -13,14 +13,10 @@ chatApp.controller('loginController', ['dataFactory', '$scope', '$routeParams',
             function getUsers() {
                 return dataFactory.getUsers().then(function (response) {
                     $scope.users = response.data;
-                    console.log(response.data);
+                    console.log(response);
                 }, function (error) {
                     console.log(error);
                 });
-            }
-
-            function doCreate() {
-                
             }
 
             $scope.login = function () {

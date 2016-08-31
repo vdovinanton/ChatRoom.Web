@@ -5,6 +5,7 @@ using System.Web.Http;
 using ChatRoom.Entity;
 using ChatRoom.Entity.Interfaces;
 using ChatRoom.Entity.Entities;
+using ChatRoom.Model;
 
 namespace ChatRoom.Api
 {
@@ -41,8 +42,8 @@ namespace ChatRoom.Api
         [Route("Users")]
         public HttpResponseMessage GetUsers()
         {
-            var user = _repository.Users.GetUsers();
-            return Request.CreateResponse(HttpStatusCode.OK, user);
+            var users = _repository.Users.GetAll();
+            return Request.CreateResponse(HttpStatusCode.OK, users);
         }
 
         [Route("User/{id}")]
@@ -52,6 +53,19 @@ namespace ChatRoom.Api
 
             var result = Request.CreateResponse(HttpStatusCode.OK, user);
             if (user == null) result = Request.CreateResponse(HttpStatusCode.NotFound, id);
+
+            return result;
+        }
+
+        [Route("Messages")]
+        public HttpResponseMessage GetMessages()
+        {
+            var messages = _repository.Messages.GetAll();
+
+            var messageMapping = MessageViewModel.MessageMapping(messages);
+
+            var result = Request.CreateResponse(HttpStatusCode.OK, messageMapping);
+            if (messages == null) result = Request.CreateResponse(HttpStatusCode.NotFound, "Message history is empty");
 
             return result;
         }

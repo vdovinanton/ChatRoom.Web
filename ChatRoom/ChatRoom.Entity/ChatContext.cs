@@ -7,7 +7,7 @@ namespace ChatRoom.Entity
     {
         public ChatContext() : base("DefaultConnection")
         {
-            //Configuration.LazyLoadingEnabled = false;
+            Configuration.LazyLoadingEnabled = false;
         }
 
         public virtual DbSet<User> Users { get; set; }

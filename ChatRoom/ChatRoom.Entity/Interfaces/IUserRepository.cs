@@ -19,6 +19,14 @@ namespace ChatRoom.Entity.Interfaces
         /// <param name="messages">Collection of the <see cref="Message"/></param>
         void AddMessages(int id, IEnumerable<Message> messages);
 
+        /// <summary>
+        /// Add message to user history
+        /// </summary>
+        /// <param name="id">User Id</param>
+        /// <param name="message">Collection of the message body</param>
+        /// <param name="image">Image url</param>
+        void AddMessages(int id, string message, string image = null);
+
         IEnumerable<User> GetUsers();
     }
 }

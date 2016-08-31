@@ -15,12 +15,12 @@ namespace ChatRoom.Entity.Repositories
             Context = context;
         }
 
-        public TEntity Get(int id)
+        public virtual TEntity Get(int id)
         {
             return Context.Set<TEntity>().Find(id);
         }
 
-        public IEnumerable<TEntity> GetAll()
+        public virtual IEnumerable<TEntity> GetAll()
         {
             return Context.Set<TEntity>().ToList();
         }

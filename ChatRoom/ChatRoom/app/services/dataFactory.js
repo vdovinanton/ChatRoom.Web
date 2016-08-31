@@ -12,6 +12,10 @@ chatApp.factory('dataFactory', ['$http', '$upload',
             return $http.get('/api/chat/user/' + id);
         }
 
+        dataFactory.getMessages = function () {
+            return $http.get('/api/chat/messages/');
+        }
+
         dataFactory.doCreate = function (name) {
             var request = $http({
                 method: 'POST',

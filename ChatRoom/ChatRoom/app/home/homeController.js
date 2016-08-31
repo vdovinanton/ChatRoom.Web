@@ -6,6 +6,7 @@ chatApp.controller('homeController', ['dataFactory', '$scope', '$routeParams', '
 	    $scope.messages = [];
         $scope.message = {
             SenderName: "",
+            SenderId: "",
             Body: "",
             Attachment: ""
         }
@@ -30,12 +31,34 @@ chatApp.controller('homeController', ['dataFactory', '$scope', '$routeParams', '
             });
         }
 
-        // like a start point
+        function getMessageHistory() {
+            return dataFactory.getMessages().then(function (response) {
+                console.log('history', response);
+                $scope.messages.push(response.data);
+            }, function (error) {
+                
+            });
+        }
+
+            // like a start point
         function activited() {
             dataFactory.getUser($routeParams.id).then(function (response) {
                 chatHub.stop();
-                chatHub.connect().done(function() {
+                chatHub.connect().done(function () {
+                    console.log(response);
                     $scope.message.SenderName = response.data.Name;
+                    $scope.message.SenderId = response.data.Id;
+
+                    dataFactory.getMessages().then(function (response) {
+                        console.log('history', response);
+                        $scope.messages = response.data;
+                        /*angular.forEach(response.data, function(value, key) {
+                            console.log('value ' + value + 'key ' + key);
+                        });*/
+                        //$scope.messages.push(response.data);
+                    }, function (error) {
+
+                    });
 
                     $scope.message.Body = $scope.message.SenderName + " has joined to channel";
                     $scope.newMessage();
@@ -50,7 +73,7 @@ chatApp.controller('homeController', ['dataFactory', '$scope', '$routeParams', '
             if ($scope.message.Body || $scope.message.Attachment)
             {
                 $scope.message.Body = urlify($scope.message.Body);
-
+                console.log($scope.message);
                 chatHub.send($scope.message);
                 
                 $scope.OnButtonImageClick = false;
