@@ -1,35 +1,24 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using ChatRoom.Entity;
+using ChatRoom.Entity.Interfaces;
+using ChatRoom.Entity.Entities;
 
 namespace ChatRoom.Api
 {
-    public class User
-    {
-        public string Id { get; set; }
-        public string Name { get; set; }
-    }
-
     [RoutePrefix("api/chat")]
     public class ChatController : ApiController
     {
-        public List<User> Users { get; set; } = new List<User>
-            {
-                new User { Name = "Fredd Perry", Id = "58E85959-F2F2-44FB-930A-204668518263"} ,
-                new User { Name = "Lacoste", Id = "68E85959-F2F2-44FB-930A-204668518263"} ,
-                new User { Name = "Jhonn Smith", Id = "78E85959-F2F2-44FB-930A-204668518263"}
-            };
+        private readonly IUnitOfWork _repository;
 
         public ChatController()
         {
-            
+            _repository = new UnitOfWork(new ChatContext());
         }
 
-        [Route("Create")]
-        [HttpPost]
+        [HttpPost, Route("Create")]
         public HttpResponseMessage Create([FromBody]User user)
         {
             HttpResponseMessage result;
@@ -39,9 +28,11 @@ namespace ChatRoom.Api
             }
             else
             {
-                user.Id = Guid.NewGuid().ToString();
-                Users.Add(user);
-                result = Request.CreateResponse(HttpStatusCode.OK, user);
+                var newUser = new User { Name = user.Name };
+
+                _repository.Users.Add(newUser);
+                _repository.Complete();
+                result = Request.CreateResponse(HttpStatusCode.OK, newUser);
             }
             
             return result;
@@ -50,13 +41,14 @@ namespace ChatRoom.Api
         [Route("Users")]
         public HttpResponseMessage GetUsers()
         {
-            return Request.CreateResponse(HttpStatusCode.OK, Users);
+            var user = _repository.Users.GetUsers();
+            return Request.CreateResponse(HttpStatusCode.OK, user);
         }
 
         [Route("User/{id}")]
-        public HttpResponseMessage GetUser(string id)
+        public HttpResponseMessage GetUser(int id)
         {
-            var user = Users.FirstOrDefault(q => q.Id == id);
+            var user = _repository.Users.Get(id);
 
             var result = Request.CreateResponse(HttpStatusCode.OK, user);
             if (user == null) result = Request.CreateResponse(HttpStatusCode.NotFound, id);

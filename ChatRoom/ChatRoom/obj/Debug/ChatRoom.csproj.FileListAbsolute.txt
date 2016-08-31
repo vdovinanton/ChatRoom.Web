@@ -78,3 +78,9 @@ D:\github\ChatRoom.Web\ChatRoom\ChatRoom\bin\System.Web.Http.WebHost.xml
 D:\github\ChatRoom.Web\ChatRoom\ChatRoom\obj\Debug\ChatRoom.csprojResolveAssemblyReference.cache
 D:\github\ChatRoom.Web\ChatRoom\ChatRoom\obj\Debug\ChatRoom.dll
 D:\github\ChatRoom.Web\ChatRoom\ChatRoom\obj\Debug\ChatRoom.pdb
+D:\_github\ChatRoom.Web\ChatRoom\ChatRoom\bin\ChatRoom.Entity.dll
+D:\_github\ChatRoom.Web\ChatRoom\ChatRoom\bin\EntityFramework.dll
+D:\_github\ChatRoom.Web\ChatRoom\ChatRoom\bin\EntityFramework.SqlServer.dll
+D:\_github\ChatRoom.Web\ChatRoom\ChatRoom\bin\ChatRoom.Entity.pdb
+D:\_github\ChatRoom.Web\ChatRoom\ChatRoom\bin\EntityFramework.xml
+D:\_github\ChatRoom.Web\ChatRoom\ChatRoom\bin\EntityFramework.SqlServer.xml
