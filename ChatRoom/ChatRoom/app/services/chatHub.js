@@ -4,7 +4,11 @@ chatApp.factory('chatHub', function () {
         var chatFactory = {};
 
         chatFactory.connect = function () {
-            $.connection.hub.start();
+            return $.connection.hub.start();
+        }
+
+        chatFactory.stop = function () {
+            return $.connection.hub.stop();
         }
 
         chatFactory.send = function(data) {

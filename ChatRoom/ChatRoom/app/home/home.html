@@ -2,12 +2,11 @@
 
     </div>
 
-    <div class="col-md-6">
-        <div>
-            Name: <input type="text" ng-model="message.SenderName"/><br/>
+<div class="col-md-6">
+    <div>
         <div class="panel panel-primary">
             <div class="panel-heading">
-                <span class="glyphicon glyphicon-comment"></span> Chat
+                <span class="glyphicon glyphicon-comment"></span> {{message.SenderName}}
             </div>
             <div class="panel-body">
                 <ul class="chat" ng-repeat="chat in messages | reverse">
@@ -17,7 +16,7 @@
                         </span>
                         <div class="chat-body clearfix">
                             <div class="header">
-                                <strong ng-class="chat.SenderName === message.SenderName ? 'pull-right primary-font' : 'primary-font'">{{chat.senderName}}</strong>
+                                <strong ng-class="chat.SenderName === message.SenderName ? 'pull-right primary-font' : 'primary-font'">{{chat.SenderName}}</strong>
                                 <small ng-class="chat.SenderName === message.SenderName ? 'text-muted' : 'pull-right text-muted'">
                                     <span class="glyphicon glyphicon-time"></span>12 mins ago
                                 </small>
@@ -54,10 +53,9 @@
         </div>
 
     </div>
-
-    <div class="col-md-2">
-        <button class="btn btn-warning" ng-click="login()">Login</button>
-    </div>
+</div>
+<div class="col-md-2">
+    <button class="btn btn-warning" ng-click="logout()">Logout</button>
 </div>
 
 

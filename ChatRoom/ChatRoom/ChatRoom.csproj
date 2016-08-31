@@ -115,6 +115,8 @@
     <Content Include="app\home\home.css" />
     <Content Include="app\home\home.html" />
     <Content Include="app\home\homeController.js" />
+    <Content Include="app\login\login.html" />
+    <Content Include="app\login\loginController.js" />
     <Content Include="app\services\chatHub.js" />
     <Content Include="app\services\dataFactory.js" />
     <Content Include="Global.asax" />

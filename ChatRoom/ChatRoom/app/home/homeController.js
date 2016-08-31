@@ -5,17 +5,9 @@ chatApp.controller('homeController', ['dataFactory', '$scope', '$routeParams', '
 	    $scope.title = "Home";
 	    $scope.messages = [];
         $scope.message = {
-            SenderName: "Guest",
+            SenderName: "",
             Body: "",
             Attachment: ""
-        }
-
-        function getMock() {
-            return dataFactory.getUsers().then(function (response) {
-                console.log(response.data);
-            }, function(error) {
-                console.log(error);
-            });
         }
 
         // find & remove protocol (http, ftp, etc.) and get domain
@@ -40,14 +32,23 @@ chatApp.controller('homeController', ['dataFactory', '$scope', '$routeParams', '
 
         // like a start point
         function activited() {
-            chatHub.connect();
-            getMock();
+            dataFactory.getUser($routeParams.id).then(function (response) {
+                chatHub.stop();
+                chatHub.connect().done(function() {
+                    $scope.message.SenderName = response.data.Name;
+
+                    $scope.message.Body = $scope.message.SenderName + " has joined to channel";
+                    $scope.newMessage();
+                });
+                console.log(response.data);
+            }, function (error) {
+                console.log(error);
+            });
         }
         
         $scope.newMessage = function () {
             if ($scope.message.Body || $scope.message.Attachment)
             {
-
                 $scope.message.Body = urlify($scope.message.Body);
 
                 chatHub.send($scope.message);
@@ -56,6 +57,10 @@ chatApp.controller('homeController', ['dataFactory', '$scope', '$routeParams', '
                 $scope.message.Body = "";
                 $scope.message.Attachment = "";
             }
+        }
+
+        $scope.logout = function () {
+            location.href = '/#/';
         }
 
         $scope.upload = function (file) {
@@ -72,8 +77,14 @@ chatApp.controller('homeController', ['dataFactory', '$scope', '$routeParams', '
             
         // event on new message
         chatHub.on(function (data) {
-            $scope.messages.push(data);
-            console.log(data);
+            var msg = {
+                SenderName: data.SenderName,
+                Body: data.Body,
+                Attachment: data.Attachment
+            }
+            $scope.messages.push(msg);
+            $scope.messages = $scope.messages;
+            console.log($scope.messages);
             $scope.$apply();
         });
 

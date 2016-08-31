@@ -5,7 +5,23 @@ chatApp.factory('dataFactory', ['$http', '$upload',
         var dataFactory = {};
 
         dataFactory.getUsers = function() {
-            return $http.get('/api/chat');
+            return $http.get('/api/chat/users');
+        }
+
+        dataFactory.getUser = function (id) {
+            return $http.get('/api/chat/user/' + id);
+        }
+
+        dataFactory.doCreate = function (name) {
+            var request = $http({
+                method: 'POST',
+                url: '/api/chat/create',
+                data: {
+                    Name: name,
+                    Id: ''
+                }
+            });
+            return request;
         }
 
         dataFactory.upload = function(name, file) {
