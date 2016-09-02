@@ -128,7 +128,6 @@
     <Content Include="app\app.config.js" />
     <Content Include="app\app.js" />
     <Content Include="app\filters\reverseFilter.js" />
-    <Content Include="app\filters\timeFilter.js" />
     <Content Include="app\home\home.css" />
     <Content Include="app\home\home.html" />
     <Content Include="app\home\homeController.js" />
