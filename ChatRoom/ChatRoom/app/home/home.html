@@ -27,7 +27,7 @@
                                     <span class="glyphicon glyphicon-time"></span>{{chat.DateTime | time}}
                                 </small>-->
                             </div>
-                            <p ng-bind-html="chat.Body"></p>
+                            <p ng-bind-html="chat.Body | externalLink"></p>
                             <br/>
                             <img ng-show="chat.Attachment" ng-src="{{chat.Attachment}}" class="img-rounded" style="max-width: 40%" alt="">
                         </div>

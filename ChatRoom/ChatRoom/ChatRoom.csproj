@@ -136,6 +136,7 @@
     <Content Include="app\login\loginController.js" />
     <Content Include="app\services\chatHub.js" />
     <Content Include="app\services\dataFactory.js" />
+    <Content Include="app\filters\externalLinkFilter.js" />
     <Content Include="Global.asax" />
     <Content Include="index.html" />
     <Content Include="Scripts\angular-file-upload.min.js" />

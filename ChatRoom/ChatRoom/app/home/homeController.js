@@ -17,26 +17,6 @@ chatApp.controller('homeController', ['dataFactory', '$scope', '$routeParams', '
             DateTime: new Date().getMilliseconds()
         }
 
-        // find & remove protocol (http, ftp, etc.) and get domain
-        function extractDomain(url) {
-            var domain;
-            if (url.indexOf("://") > -1) {
-                domain = url.split('/')[2];
-            }
-            else {
-                domain = url.split('/')[0];
-            }
-            return domain.split(':')[0];
-        }
-
-        // parse url
-        function urlify(text) {
-            var urlRegex = /(https?:\/\/[^\s]+)/g;
-            return text.replace(urlRegex, function (url) {
-                return '<a href="' + url + '">' + extractDomain(url) + '</a>';
-            });
-        }
-
         // like a start point
         function activited() {
             dataFactory.getUser($routeParams.id).then(function (response) {
@@ -60,7 +40,7 @@ chatApp.controller('homeController', ['dataFactory', '$scope', '$routeParams', '
         $scope.newMessage = function () {
             if ($scope.message.Body || $scope.message.Attachment)
             {
-                $scope.message.Body = urlify($scope.message.Body);
+                $scope.message.Body = $scope.message.Body;
                 $scope.message.Attachment = imgUrl;
                 
                 // publish message
@@ -97,7 +77,6 @@ chatApp.controller('homeController', ['dataFactory', '$scope', '$routeParams', '
                 DateTime: data.DateTime
             }
             $scope.messages.push(msg);
-            $scope.messages = $scope.messages;
             $scope.$apply();
         });
 
