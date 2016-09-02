@@ -14,7 +14,7 @@ chatApp.controller('homeController', ['dataFactory', '$scope', '$routeParams', '
             SenderId: "",
             Body: "",
             Attachment: "",
-            DateTime: new Date().getMilliseconds()
+            DateTime: new Date()
         }
 
         // like a start point

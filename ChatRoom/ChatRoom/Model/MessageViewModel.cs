@@ -12,7 +12,7 @@ namespace ChatRoom.Model
         public int SenderId { get; set; }
         public string Body { get; set; }
         public string Attachment { get; set; }
-        public double DateTime { get; set; }
+        public DateTime DateTime { get; set; }
 
 
         /// <summary>
@@ -25,7 +25,7 @@ namespace ChatRoom.Model
             SenderName = message.User.FirstOrDefault()?.Name,
             Body = message.Body,
             Attachment = message.Image,
-            DateTime = (System.DateTime.Now - message.DateTime).TotalMilliseconds
+            DateTime = message.DateTime
         }).ToList();
     }
 }

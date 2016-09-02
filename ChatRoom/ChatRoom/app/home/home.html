@@ -23,9 +23,10 @@
                             <div class="header">
                                 <strong ng-class="chat.SenderName === message.SenderName ? 'pull-right primary-font' : 'primary-font'">{{chat.SenderName}}</strong>
                                 <!-- TODO: TIME -->
-                                <!-- <small ng-class="chat.SenderName === message.SenderName ? 'text-muted' : 'pull-right text-muted'">
-                                    <span class="glyphicon glyphicon-time"></span>{{chat.DateTime | time}}
-                                </small>-->
+                                 <small ng-class="chat.SenderName === message.SenderName ? 'text-muted' : 'pull-right text-muted'">
+                                     <!--<span class="glyphicon glyphicon-time"></span>{{chat.DateTime | time}}-->
+                                     <span am-time-ago="chat.DateTime"></span>
+                                </small>
                             </div>
                             <p ng-bind-html="chat.Body | externalLink"></p>
                             <br/>
