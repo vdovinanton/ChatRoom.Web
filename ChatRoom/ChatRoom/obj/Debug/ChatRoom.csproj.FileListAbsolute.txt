@@ -148,3 +148,7 @@ C:\workspace\_git\ChatRoom.Web\ChatRoom\ChatRoom\bin\System.Web.Http.WebHost.xml
 C:\workspace\_git\ChatRoom.Web\ChatRoom\ChatRoom\obj\Debug\ChatRoom.csprojResolveAssemblyReference.cache
 C:\workspace\_git\ChatRoom.Web\ChatRoom\ChatRoom\obj\Debug\ChatRoom.dll
 C:\workspace\_git\ChatRoom.Web\ChatRoom\ChatRoom\obj\Debug\ChatRoom.pdb
+C:\workspace\_git\ChatRoom.Web\ChatRoom\ChatRoom\bin\Microsoft.AspNet.Identity.Core.dll
+C:\workspace\_git\ChatRoom.Web\ChatRoom\ChatRoom\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\workspace\_git\ChatRoom.Web\ChatRoom\ChatRoom\bin\Microsoft.AspNet.Identity.Core.xml
+C:\workspace\_git\ChatRoom.Web\ChatRoom\ChatRoom\bin\Microsoft.AspNet.Identity.EntityFramework.xml

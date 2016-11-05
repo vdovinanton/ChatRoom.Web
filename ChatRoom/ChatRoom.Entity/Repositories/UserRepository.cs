@@ -16,12 +16,12 @@ namespace ChatRoom.Entity.Repositories
 
         public bool Any()
         {
-            return ChatContext.Users.Any();
+            return ChatContext.ChatUsers.Any();
         }
         
         public void AddMessages(int id, IEnumerable<Message> messages)
         {
-            var user = ChatContext.Users.ToList().FirstOrDefault(q => q.Id == id);
+            var user = ChatContext.ChatUsers.ToList().FirstOrDefault(q => q.Id == id);
             foreach (var message in messages)
             {
                 user?.Messages.Add(message);
@@ -30,7 +30,7 @@ namespace ChatRoom.Entity.Repositories
 
         public void AddMessages(int id, string message, string image = null)
         {
-            var user = ChatContext.Users.ToList().FirstOrDefault(q => q.Id == id);
+            var user = ChatContext.ChatUsers.ToList().FirstOrDefault(q => q.Id == id);
             user?.Messages.Add(new Message
             {
                 Body = message,
@@ -41,7 +41,7 @@ namespace ChatRoom.Entity.Repositories
 
         public IEnumerable<User> GetUsers()
         {
-            return ChatContext.Users.Include(q => q.Messages).ToList();
+            return ChatContext.ChatUsers.Include(q => q.Messages).ToList();
         }
     }
 }
